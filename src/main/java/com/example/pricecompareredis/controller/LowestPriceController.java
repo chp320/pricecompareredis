@@ -1,6 +1,7 @@
 package com.example.pricecompareredis.controller;
 
 import com.example.pricecompareredis.service.LowestPriceService;
+import com.example.pricecompareredis.vo.Keyword;
 import com.example.pricecompareredis.vo.Product;
 import com.example.pricecompareredis.vo.ProductGrp;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +29,15 @@ public class LowestPriceController {
     @PutMapping("/productGroup")
     public int setNewProduct(@RequestBody ProductGrp newProductGrp) {
         return myLowestPriceService.setNewProductGrp(newProductGrp);
+    }
+
+    @PutMapping("/productGroupToKeyword")
+    public int setNewProductGrpToKeyword(String keyword, String prodGrpId, double score) {
+        return myLowestPriceService.setNewProductGrpToKeyword(keyword, prodGrpId, score);
+    }
+
+    @GetMapping("/productPrice/lowest")
+    public Keyword getLowestPriceProductByKeyword(String keyword) {
+        return myLowestPriceService.getLowestPriceProductByKeyword(keyword);
     }
 }
